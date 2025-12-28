@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)file:///C:/Users/alpha/Downloads/coffee-shop-landing_1.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bean &amp; Bloom Coffee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="./Bean &amp; Bloom Coffee_files/css2" rel="stylesheet">
+    <style>
+        :root {
+            --coffee-dark: #2C1810;
+            --coffee-medium: #6F4E37;
+            --coffee-light: #A67C52;
+            --cream: #F5E6D3;
+            --burnt-orange: #D97642;
+            --sage: #8B9D83;
+            --gold: #C9A962;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            background: var(--cream);
+            color: var(--coffee-dark);
+            overflow-x: hidden;
+        }
+
+        /* Animated grain texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.5;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--coffee-medium) 0%, var(--coffee-dark) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(circle, var(--burnt-orange) 0%, transparent 70%);
+            opacity: 0.2;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-50px, 50px) rotate(5deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 12vw, 8rem);
+            font-weight: 900;
+            color: var(--cream);
+            margin-bottom: 1rem;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--gold);
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--burnt-orange);
+            color: var(--cream);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.05em;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+            box-shadow: 0 10px 30px rgba(217, 118, 66, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(217, 118, 66, 0.4);
+            background: #e88854;
+        }
+
+        /* Coffee beans decoration */
+        .coffee-bean {
+            position: absolute;
+            background: var(--coffee-dark);
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            opacity: 0.1;
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .bean-1 {
+            width: 100px;
+            height: 150px;
+            top: 10%;
+            left: 10%;
+            animation-duration: 25s;
+        }
+
+        .bean-2 {
+            width: 150px;
+            height: 200px;
+            bottom: 15%;
+            right: 15%;
+            animation-duration: 35s;
+            animation-direction: reverse;
+        }
+
+        .bean-3 {
+            width: 80px;
+            height: 120px;
+            top: 60%;
+            left: 5%;
+            animation-duration: 30s;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 8rem 2rem;
+            background: var(--cream);
+            position: relative;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(44, 24, 16, 0.08);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(44, 24, 16, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--coffee-dark);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--coffee-medium);
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 2rem;
+            background: var(--coffee-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, var(--burnt-orange) 0%, transparent 60%);
+            opacity: 0.1;
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.2); opacity: 0.15; }
+        }
+
+        .about-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .about-content {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .about-content.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: var(--gold);
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+
+        .about-content p {
+            color: var(--cream);
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .stat.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--burnt-orange);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--cream);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+        }
+
+        .about-visual {
+            position: relative;
+            height: 500px;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .about-visual.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .coffee-cup {
+            position: absolute;
+            background: linear-gradient(135deg, var(--burnt-orange) 0%, var(--coffee-medium) 100%);
+            border-radius: 20px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            animation: float-gentle 6s ease-in-out infinite;
+        }
+
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .cup-1 {
+            width: 200px;
+            height: 280px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .cup-2 {
+            width: 160px;
+            height: 220px;
+            top: 40%;
+            right: 15%;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--coffee-light) 100%);
+            animation-delay: 1s;
+        }
+
+        .cup-3 {
+            width: 140px;
+            height: 200px;
+            bottom: 15%;
+            left: 30%;
+            background: linear-gradient(135deg, var(--sage) 0%, var(--coffee-medium) 100%);
+            animation-delay: 2s;
+        }
+
+        .steam {
+            position: absolute;
+            width: 3px;
+            height: 60px;
+            background: linear-gradient(to top, var(--cream), transparent);
+            border-radius: 50px;
+            opacity: 0.3;
+            animation: rise 3s ease-in-out infinite;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-80px) translateX(10px);
+                opacity: 0;
+            }
+        }
+
+        .steam-1 {
+            top: -20px;
+            left: 35%;
+            animation-delay: 0s;
+        }
+
+        .steam-2 {
+            top: -20px;
+            left: 50%;
+            animation-delay: 0.5s;
+        }
+
+        .steam-3 {
+            top: -20px;
+            left: 65%;
+            animation-delay: 1s;
+        }
+
+        @media (max-width: 968px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-visual {
+                height: 400px;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Menu Preview Section */
+        .menu-preview {
+            background: linear-gradient(to bottom, var(--sage) 0%, var(--coffee-light) 100%);
+            padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: var(--cream);
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
+        }
+
+        .menu-preview h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: var(--cream);
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .menu-items {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background: rgba(245, 230, 211, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .menu-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .menu-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .menu-item-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--coffee-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item-info p {
+            color: var(--coffee-medium);
+        }
+
+        .menu-item-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--burnt-orange);
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: linear-gradient(135deg, var(--burnt-orange) 0%, var(--coffee-medium) 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .newsletter-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            color: var(--cream);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Karla', sans-serif;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input:focus {
+            box-shadow: 0 0 0 3px rgba(245, 230, 211, 0.3);
+        }
+
+        .newsletter-button {
+            padding: 1rem 2.5rem;
+            background: var(--coffee-dark);
+            color: var(--cream);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Karla', sans-serif;
+        }
+
+        .newsletter-button:hover {
+            background: var(--coffee-medium);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .newsletter-button:active {
+            transform: translateY(0);
+        }
+
+        .newsletter-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .form-message {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .form-message.success {
+            background: rgba(139, 157, 131, 0.3);
+            color: var(--cream);
+            display: block;
+        }
+
+        .form-message.error {
+            background: rgba(200, 50, 50, 0.3);
+            color: var(--cream);
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--coffee-dark);
+            color: var(--cream);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--burnt-orange);
+        }
+
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(245, 230, 211, 0.2);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .menu-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="coffee-bean bean-1"></div>
+        <div class="coffee-bean bean-2"></div>
+        <div class="coffee-bean bean-3"></div>
+        <div class="hero-content">
+            <div class="hero-subtitle">Artisan Coffee</div>
+            <h1>Bean &amp; Bloom</h1>
+            <a href="file:///C:/Users/alpha/Downloads/coffee-shop-landing_1.html#menu" class="cta-button">Explore Our Menu</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature-card visible">
+                <div class="feature-icon">☕</div>
+                <h3>Fresh Roasted</h3>
+                <p>Our beans are roasted daily in-house, ensuring the freshest cup every single time you visit.</p>
+            </div>
+            <div class="feature-card visible">
+                <div class="feature-icon">🌱</div>
+                <h3>Sustainable</h3>
+                <p>We source exclusively from ethical, organic farms that prioritize environmental stewardship.</p>
+            </div>
+            <div class="feature-card visible">
+                <div class="feature-icon">🎨</div>
+                <h3>Crafted with Love</h3>
+                <p>Every drink is a work of art, carefully prepared by our expert baristas who pour their hearts into each cup.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-content visible">
+                <h2>Crafted with Passion, Served with Heart</h2>
+                <p>
+                    Bean &amp; Bloom was born from a simple dream: to create a space where coffee isn't just a beverage, 
+                    it's an experience. Since 2018, we've been roasting exceptional beans and building a community 
+                    of coffee lovers who appreciate the art and science behind every cup.
+                </p>
+                <p>
+                    Our founder, Sofia Martinez, spent five years traveling through coffee farms in Colombia, 
+                    Ethiopia, and Guatemala, learning from master roasters and forging relationships with farmers 
+                    who share our commitment to quality and sustainability.
+                </p>
+                <div class="about-stats">
+                    <div class="stat">
+                        <span class="stat-number">7+</span>
+                        <span class="stat-label">Years Brewing</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15</span>
+                        <span class="stat-label">Origin Countries</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Organic &amp; Fair Trade</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">10k+</span>
+                        <span class="stat-label">Happy Customers</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual visible">
+                <div class="coffee-cup cup-1">
+                    <div class="steam steam-1"></div>
+                    <div class="steam steam-2"></div>
+                    <div class="steam steam-3"></div>
+                </div>
+                <div class="coffee-cup cup-2">
+                    <div class="steam steam-1"></div>
+                    <div class="steam steam-2"></div>
+                    <div class="steam steam-3"></div>
+                </div>
+                <div class="coffee-cup cup-3">
+                    <div class="steam steam-1"></div>
+                    <div class="steam steam-2"></div>
+                    <div class="steam steam-3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Preview Section -->
+    <section class="menu-preview" id="menu">
+        <h2>Our Signature Drinks</h2>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <h4>Velvet Cappuccino</h4>
+                    <p>Rich espresso with velvety microfoam and a hint of vanilla</p>
+                </div>
+                <div class="menu-item-price">$4.50</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <h4>Golden Honey Latte</h4>
+                    <p>Smooth espresso, steamed milk, and local wildflower honey</p>
+                </div>
+                <div class="menu-item-price">$5.25</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <h4>Blooming Matcha</h4>
+                    <p>Premium ceremonial matcha with oat milk and rose water</p>
+                </div>
+                <div class="menu-item-price">$5.75</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <h4>Cold Brew Tonic</h4>
+                    <p>Refreshing cold brew over tonic water with orange zest</p>
+                </div>
+                <div class="menu-item-price">$4.75</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h2>Join Our Coffee Community</h2>
+            <p>Get exclusive updates, brewing tips, and special offers delivered to your inbox.</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" id="emailInput" placeholder="Enter your email" required="" class="newsletter-input">
+                <button type="submit" class="newsletter-button">Subscribe</button>
+            </form>
+            <div id="formMessage" class="form-message"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>Visit Us Today</h3>
+            <p>123 Bloom Street, Coffee District<br>Open Daily: 7AM - 7PM</p>
+            <div class="footer-links">
+                <a href="file:///C:/Users/alpha/Downloads/coffee-shop-landing_1.html#about">About</a>
+                <a href="file:///C:/Users/alpha/Downloads/coffee-shop-landing_1.html#menu">Menu</a>
+                <a href="file:///C:/Users/alpha/Downloads/coffee-shop-landing_1.html#">Instagram</a>
+                <a href="file:///C:/Users/alpha/Downloads/coffee-shop-landing_1.html#">Contact</a>
+            </div>
+            <div class="copyright">
+                © 2025 Bean &amp; Bloom Coffee. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Observe about section elements
+        document.querySelectorAll('.about-content, .about-visual').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Observe stats with staggered animation
+        document.querySelectorAll('.stat').forEach((stat, index) => {
+            const statObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 150);
+                    }
+                });
+            }, observerOptions);
+            statObserver.observe(stat);
+        });
+
+        // Observe menu items
+        document.querySelectorAll('.menu-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ============================================
+        // SUPABASE INTEGRATION
+        // ============================================
+        
+        // Supabase credentials
+        const SUPABASE_URL = 'https://cbisgkddnavhnrsabihx.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNiaXNna2RkbmF2aG5yc2FiaWh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY5NTMyMzMsImV4cCI6MjA4MjUyOTIzM30.HdDjNRV5RFerGvOL9yEjZXW9Aqv39SR3Jw01K_pkiG0';
+
+        // Newsletter form submission
+        const form = document.getElementById('newsletterForm');
+        const emailInput = document.getElementById('emailInput');
+        const formMessage = document.getElementById('formMessage');
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = emailInput.value.trim();
+            
+            if (!email) return;
+
+            // Disable button during submission
+            submitButton.disabled = true;
+            submitButton.textContent = 'Subscribing...';
+            formMessage.style.display = 'none';
+
+            try {
+                // Make POST request to Supabase
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/newsletter_subscribers`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        subscribed_at: new Date().toISOString()
+                    })
+                });
+
+                if (response.ok || response.status === 201) {
+                    // Success!
+                    formMessage.textContent = '🎉 Thank you for subscribing!';
+                    formMessage.className = 'form-message success';
+                    emailInput.value = '';
+                } else {
+                    throw new Error('Subscription failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                formMessage.textContent = '❌ Something went wrong. Please try again.';
+                formMessage.className = 'form-message error';
+            } finally {
+                // Re-enable button
+                submitButton.disabled = false;
+                submitButton.textContent = 'Subscribe';
+            }
+        });
+    </script>
+
+</body></html>
